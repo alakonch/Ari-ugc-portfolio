@@ -38,15 +38,23 @@
   h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;margin:0;color:var(--forest);}
   a{color:var(--clay-deep);}
 
+  /* name banner */
+  .name-banner{position:relative;height:260px;overflow:hidden;}
+  .banner-photos{position:absolute;inset:0;display:flex;}
+  .banner-photo{flex:1;background-size:cover;background-position:center 15%;filter:saturate(0.85) sepia(0.05) brightness(0.96);}
+  .banner-overlay{position:absolute;inset:0;background:linear-gradient(125deg, rgba(35,43,34,0.6), rgba(140,74,56,0.38));}
+  .banner-fade{position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(to bottom, transparent, var(--paper));}
+  .banner-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+  .banner-content .label{color:#F3EBDF;opacity:0.9;margin-bottom:10px;}
+  .banner-name{font-family:'Fraunces',serif;font-weight:500;font-size:46px;color:var(--paper);text-shadow:0 2px 20px rgba(0,0,0,0.35);}
+
   /* nav */
   nav{
-    position:sticky;top:0;z-index:10;
     background:rgba(251,246,239,0.92);
     backdrop-filter:blur(6px);
     border-bottom:1px solid var(--line);
   }
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:18px;padding-bottom:18px;}
-  .nav-name{font-family:'Fraunces',serif;font-size:19px;color:var(--forest);}
+  nav .wrap{display:flex;align-items:center;justify-content:center;padding-top:16px;padding-bottom:16px;}
   .nav-links{display:flex;gap:26px;list-style:none;margin:0;padding:0;}
   .nav-links a{
     font-family:'Space Mono',monospace;
@@ -57,11 +65,25 @@
 
   /* hero */
   header.hero{padding:88px 0 72px;position:relative;overflow:hidden;}
-  .dots{position:absolute;right:-40px;top:-40px;width:260px;height:260px;opacity:0.5;pointer-events:none;}
+  .hero-flex{display:flex;align-items:center;gap:48px;}
+  .hero-text{flex:1 1 480px;min-width:0;}
+  .hero-photo-wrap{flex:1 1 320px;min-width:260px;height:440px;position:relative;}
+  .hero-photo{
+    position:absolute;inset:0;border-radius:4px;
+    background:url('images/profile.jpg') center 18%/cover no-repeat;
+    -webkit-mask-image:linear-gradient(100deg, transparent 0%, black 30%, black 100%);
+    mask-image:linear-gradient(100deg, transparent 0%, black 30%, black 100%);
+    filter:saturate(0.9) sepia(0.08) brightness(1.02);
+  }
+  .hero-photo::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(160deg, rgba(124,139,111,0.24), rgba(201,134,113,0.16));
+    mix-blend-mode:multiply;
+  }
   .hero .label{margin-bottom:18px;}
-  .hero h1{font-size:52px;line-height:1.08;max-width:620px;}
+  .hero h1{font-size:48px;line-height:1.1;}
   .hero h1 em{font-style:italic;color:var(--clay-deep);}
-  .hero p.tagline{max-width:480px;margin-top:20px;font-size:16.5px;color:#4b5347;}
+  .hero p.tagline{max-width:460px;margin-top:20px;font-size:16.5px;color:#4b5347;}
   .badge-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px;}
   .badge{
     font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;
@@ -131,7 +153,12 @@
   footer .wrap{display:flex;justify-content:space-between;font-size:12px;color:var(--sage);font-family:'Space Mono',monospace;}
 
   @media(max-width:760px){
-    .hero h1{font-size:36px;}
+    .name-banner{height:190px;}
+    .banner-name{font-size:30px;}
+    .hero h1{font-size:34px;}
+    .hero-flex{flex-direction:column;gap:32px;}
+    .hero-photo-wrap{width:100%;height:320px;}
+    .hero-photo{-webkit-mask-image:none;mask-image:none;border-radius:8px;}
     .about-grid,.grid,.rate-grid{grid-template-columns:1fr;}
     .nav-links{display:none;}
     .contact-box{padding:38px 26px;}
@@ -140,10 +167,22 @@
 </head>
 <body>
 
+<div class="name-banner">
+  <div class="banner-photos">
+    <div class="banner-photo" style="background-image:url('images/banner-1.jpg')"></div>
+    <div class="banner-photo" style="background-image:url('images/banner-2.jpg')"></div>
+    <div class="banner-photo" style="background-image:url('images/banner-3.jpg')"></div>
+  </div>
+  <div class="banner-overlay"></div>
+  <div class="banner-fade"></div>
+  <div class="banner-content">
+    <div class="label">UGC creator — beauty &amp; skincare</div>
+    <h1 class="banner-name">Areja Lakonchai</h1>
+  </div>
+</div>
+
 <nav>
   <div class="wrap">
-    <div class="nav-name">Areja Lakonchai
-    </div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#content">Content</a></li>
@@ -154,26 +193,24 @@
 </nav>
 
 <header class="hero">
-  <svg class="dots" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <circle cx="20" cy="20" r="3" fill="#C98671"/><circle cx="60" cy="20" r="3" fill="#7C8B6F"/><circle cx="100" cy="20" r="3" fill="#C98671"/><circle cx="140" cy="20" r="3" fill="#7C8B6F"/><circle cx="180" cy="20" r="3" fill="#C98671"/>
-    <circle cx="20" cy="60" r="3" fill="#7C8B6F"/><circle cx="60" cy="60" r="3" fill="#C98671"/><circle cx="100" cy="60" r="3" fill="#7C8B6F"/><circle cx="140" cy="60" r="3" fill="#C98671"/><circle cx="180" cy="60" r="3" fill="#7C8B6F"/>
-    <circle cx="20" cy="100" r="3" fill="#C98671"/><circle cx="60" cy="100" r="3" fill="#7C8B6F"/><circle cx="100" cy="100" r="3" fill="#C98671"/><circle cx="140" cy="100" r="3" fill="#7C8B6F"/><circle cx="180" cy="100" r="3" fill="#C98671"/>
-    <circle cx="20" cy="140" r="3" fill="#7C8B6F"/><circle cx="60" cy="140" r="3" fill="#C98671"/><circle cx="100" cy="140" r="3" fill="#7C8B6F"/><circle cx="140" cy="140" r="3" fill="#C98671"/><circle cx="180" cy="140" r="3" fill="#7C8B6F"/>
-    <circle cx="20" cy="180" r="3" fill="#C98671"/><circle cx="60" cy="180" r="3" fill="#7C8B6F"/><circle cx="100" cy="180" r="3" fill="#C98671"/><circle cx="140" cy="180" r="3" fill="#7C8B6F"/><circle cx="180" cy="180" r="3" fill="#C98671"/>
-  </svg>
-  <div class="wrap">
-    <div class="label">UGC creator — beauty &amp; skincare</div>
-    <h1>Real routines, <em>real results,</em><br>told on camera.</h1>
-    <p class="tagline">I make short-form video content that shows your product doing its job — unboxings, GRWMs, ingredient breakdowns, and honest reviews, shot the way real customers already watch.</p>
-    <div class="badge-row">
-      <span class="badge">Skincare</span>
-      <span class="badge">GRWM</span>
-      <span class="badge">Product demo</span>
-      <span class="badge">TikTok / Reels ready</span>
+  <div class="wrap hero-flex">
+    <div class="hero-text">
+      <div class="label">UGC creator — beauty &amp; skincare</div>
+      <h1>Real routines, <em>real results,</em><br>told on camera.</h1>
+      <p class="tagline">I make short-form video content that shows your product doing its job — unboxings, GRWMs, ingredient breakdowns, and honest reviews, shot the way real customers already watch.</p>
+      <div class="badge-row">
+        <span class="badge">Skincare</span>
+        <span class="badge">GRWM</span>
+        <span class="badge">Product demo</span>
+        <span class="badge">TikTok / Reels ready</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-solid" href="#contact">Work with me</a>
+        <a class="btn btn-outline" href="#content">See content</a>
+      </div>
     </div>
-    <div class="cta-row">
-      <a class="btn btn-solid" href="#contact">Work with me</a>
-      <a class="btn btn-outline" href="#content">See content</a>
+    <div class="hero-photo-wrap">
+      <div class="hero-photo"></div>
     </div>
   </div>
 </header>
@@ -182,9 +219,9 @@
   <div class="wrap about-grid">
     <div>
       <div class="label" style="margin-bottom:14px;">About</div>
-      <h2 style="font-size:26px;margin-bottom:16px;">Hi, I'm Areja Lakonchai—</h2>
-      <p>[Write 3–4 sentences here: who you are, why skincare specifically, and what kind of content you make. Example: "I'm a skincare-obsessed creator based in [city]. I've spent years testing products on my own routine, and I turn that into short, honest videos brands can use as ads — no script, no filter, just what actually works." Keep it conversational, like you're talking to a friend.]</p>
-      <p>[Optional second paragraph: your background, what makes your POV different, or a personal skin story — dryness, sensitivity, acne journey, whatever is true for you. Authenticity is the whole product here.]</p>
+      <h2 style="font-size:26px;margin-bottom:16px;">Hi, I'm Ari :)</h2>
+      <p>I'm a UGC creator obsessed with skincare and self-improvement, based in Barcelona. I've spent years testing products on my own routine and I'm starting now with creating videos for brands that they can use for ads — no script, no filter, just what actually works.</p>
+      <p>I was born in Germany and have roots in Thailand. I fought against acne in my 20s, and ever since, I've found my passion for skincare and self-love.</p>
     </div>
     <div>
       <div class="label" style="margin-bottom:14px;">What I bring</div>
@@ -311,7 +348,7 @@
     <div class="contact-box">
       <h2>Let's make your product go viral.</h2>
       <p>Have a product you want tested and filmed? Send me a message and I'll get back within 48 hours.</p>
-      <a class="btn btn-solid" href="mailto:your@email.com">your@email.com</a>
+      <a class="btn btn-solid" href="mailto:areja.lakonchai@outlook.com">areja.lakonchai@outlook.com</a>
     </div>
   </div>
 </section>
@@ -319,7 +356,7 @@
 <footer>
   <div class="wrap">
     <span>Areja Lakonchai · Beauty &amp; skincare UGC</span>
-    <span>@your.handle</span>
+    <a href="https://instagram.com/a.la.xoxo" style="color:var(--sage);text-decoration:none;">@a.la.xoxo</a>
   </div>
 </footer>
 
