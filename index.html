@@ -38,7 +38,7 @@
   h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;margin:0;color:var(--forest);}
   a{color:var(--clay-deep);}
 
-  /* name banner */
+  /* name banner OLD *
   .name-banner{position:relative;height:260px;overflow:hidden;}
   .banner-photos{position:absolute;inset:0;display:flex;}
   .banner-photo{flex:1;background-size:cover;background-position:center 15%;filter:saturate(0.85) sepia(0.05) brightness(0.96);}
@@ -46,8 +46,20 @@
   .banner-fade{position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(to bottom, transparent, var(--paper));}
   .banner-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
   .banner-content .label{color:#F3EBDF;opacity:0.9;margin-bottom:10px;}
-  .banner-name{font-family:'Fraunces',serif;font-weight:500;font-size:46px;color:var(--paper);text-shadow:0 2px 20px rgba(0,0,0,0.35);}
+  .banner-name{font-family:'Fraunces',serif;font-weight:500;font-size:46px;color:var(--paper);text-shadow:0 2px 20px rgba(0,0,0,0.35);}/
 
+/* name banner */
+  .name-banner{position:relative;height:380px;overflow:hidden;}
+  .banner-photos{position:absolute;inset:0;display:flex;}
+  .banner-photo{flex:1;background-size:cover;background-position:center 15%;filter:saturate(0.85) sepia(0.05) brightness(0.96);}
+  .banner-overlay{position:absolute;inset:0;background:linear-gradient(125deg, rgba(35,43,34,0.6), rgba(140,74,56,0.38));}
+  .banner-fade{position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(to bottom, transparent, var(--paper));}
+  .banner-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+  .banner-content .label{color:#F3EBDF;opacity:0.9;margin-bottom:14px;}
+  .banner-name{font-family:'Fraunces',serif;font-weight:500;font-size:62px;color:var(--paper);text-shadow:0 2px 24px rgba(0,0,0,0.4);}
+
+
+  
   /* nav */
   nav{
     background:rgba(251,246,239,0.92);
@@ -153,8 +165,8 @@
   footer .wrap{display:flex;justify-content:space-between;font-size:12px;color:var(--sage);font-family:'Space Mono',monospace;}
 
   @media(max-width:760px){
-    .name-banner{height:190px;}
-    .banner-name{font-size:30px;}
+    .name-banner{height:280px;}
+    .banner-name{font-size:38px;}
     .hero h1{font-size:34px;}
     .hero-flex{flex-direction:column;gap:32px;}
     .hero-photo-wrap{width:100%;height:320px;}
